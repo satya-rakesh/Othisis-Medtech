@@ -105,7 +105,7 @@ function App() {
 								className="edit-button"
 								style={{
 									width: "100%",
-									padding: "10px 0px",
+									padding: "20px 0px",
 									backgroundColor: "#000",
 									color: "#fff",
 									border: "none",

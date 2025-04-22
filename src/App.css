@@ -95,16 +95,7 @@ main {
 	width: 80%;
 	text-align: center;
 }
-.edit-button {
-	width: 100%;
-	padding: 10px 0px;
-	background-color: #000;
-	color: #fff;
-	border: none;
-	border-radius: 6px;
-	cursor: pointer;
-	border: none;
-}
+
 .template-details {
 	flex: 2;
 	min-width: 320px;
