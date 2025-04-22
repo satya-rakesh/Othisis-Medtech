@@ -2,10 +2,12 @@
 
 import "./App.css";
 // import "./responsive.css";
-// import { Bell, UserCircle, ChevronDown } from "lucide-react";
 import LeftBar from "./components/Left Bar/leftBar";
 import Header from "./components/Header/header";
 import { Search, Info, Mic, Upload, Trash } from "lucide-react";
+import DraggableTemplateItem from "./components/DraggableItem";
+import DropZone from "./components/DroppingTemplate";
+import { useState, useRef } from "react";
 
 function App() {
 	const templates = [
@@ -54,6 +56,23 @@ function App() {
 		},
 	];
 
+	const [droppedTemplates, setDroppedTemplates] = useState([]);
+	const dropContainerRef = useRef(null); // Ref for the container
+
+	const handleDrop = (item) => {
+		// Update the dropped templates array
+		setDroppedTemplates((prev) => [
+			...prev,
+			{ id: Date.now(), label: item.label, description: [] },
+		]);
+
+		// Scroll the drop container to the bottom
+		if (dropContainerRef.current) {
+			dropContainerRef.current.scrollTop =
+				dropContainerRef.current.scrollHeight;
+		}
+	};
+
 	return (
 		<div className="app-container">
 			<Header />
@@ -78,14 +97,23 @@ function App() {
 								</div>
 								<div className="template-list">
 									{templates.map((temp) => (
-										<div className="template-list-items" key={temp.id}>
-											{temp.label}
-										</div>
+										<DraggableTemplateItem key={temp.id} item={temp} />
 									))}
 								</div>
 							</div>
-
-							<button className="edit-button">Edit ✎</button>
+							<button
+								className="edit-button"
+								style={{
+									width: "100%",
+									padding: "10px 0px",
+									backgroundColor: "#000",
+									color: "#fff",
+									border: "none",
+									borderRadius: "6px",
+									cursor: "pointer",
+								}}>
+								Edit ✎
+							</button>
 						</section>
 
 						<section className="template-details">
@@ -104,8 +132,8 @@ function App() {
 								</div>
 							</div>
 							<div className="template-details-body">
-								{templateDetails.map((data) => {
-									return (
+								<DropZone onDrop={handleDrop}>
+									{[...templateDetails, ...droppedTemplates].map((data) => (
 										<div key={data.id} className="template-detail-item">
 											<strong className="template-detail-label">
 												{data.label}:
@@ -116,8 +144,8 @@ function App() {
 												</li>
 											))}
 										</div>
-									);
-								})}
+									))}
+								</DropZone>
 							</div>
 						</section>
 					</div>

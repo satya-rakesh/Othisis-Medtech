@@ -1,6 +1,6 @@
 /** @format */
 
-.left-bar {
+/* .left-bar {
 	width: 60px;
 	background-color: black;
 	color: #fff;
@@ -16,11 +16,9 @@
 	position: relative;
 	top: -35px;
 	z-index: 1000;
-}
+} */
 
-
-
-/* .left-bar {
+.left-bar {
 	width: 60px;
 	background-color: black;
 	color: #fff;
@@ -29,15 +27,14 @@
 	align-items: center;
 	padding-top: 20px;
 	gap: 30px;
-	height: calc(100vh - 10vh); 
+	height: calc(100vh - 10vh);
 	box-shadow: 0px 0px 15px 5px rgba(255, 255, 255, 0.1),
 		0px 0px 15px 5px rgba(255, 255, 255, 0.1);
 	border-radius: 0px 13px 13px 0px;
-	position: sticky;
-	top: 10vh;
+	position: relative;
+	top: -35px;
 	z-index: 1000;
 }
-
 
 @media (max-width: 600px) {
 	.left-bar {
@@ -50,4 +47,4 @@
 		border-radius: 0;
 		box-shadow: none;
 	}
-} */
+}

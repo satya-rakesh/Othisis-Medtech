@@ -6,7 +6,7 @@ const Header = () => {
 	return (
 		<header className="header-container">
 			<div className="header-logo">
-				<div className="logo-icon">⚫</div>
+				<img src ="./OthisisLogo.png" className="logo-icon"/>
 				<span className="logo-text">Othisis Medtech</span>
 			</div>
 			<ul className="header-items">
@@ -23,4 +23,3 @@ const Header = () => {
 };
 
 export default Header;
-	
