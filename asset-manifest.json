@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Othisis-Medtech/static/css/main.fdfc203b.css",
+    "main.js": "/Othisis-Medtech/static/js/main.1a2623ca.js",
+    "static/js/453.a281a67e.chunk.js": "/Othisis-Medtech/static/js/453.a281a67e.chunk.js",
+    "index.html": "/Othisis-Medtech/index.html",
+    "main.fdfc203b.css.map": "/Othisis-Medtech/static/css/main.fdfc203b.css.map",
+    "main.1a2623ca.js.map": "/Othisis-Medtech/static/js/main.1a2623ca.js.map",
+    "453.a281a67e.chunk.js.map": "/Othisis-Medtech/static/js/453.a281a67e.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fdfc203b.css",
+    "static/js/main.1a2623ca.js"
+  ]
+}
