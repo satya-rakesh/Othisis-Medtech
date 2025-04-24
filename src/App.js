@@ -55,18 +55,24 @@ function App() {
 			description: ["Suspected tooth abscess"],
 		},
 	];
+	const [seachItem, setsearchItem] = useState("");
+
+	const searchTemplate = (e) => {
+		setsearchItem(e.target.value);
+	};
+	const filteredTemplates = templates.filter((temp) =>
+		temp.label.toLowerCase().includes(seachItem.toLowerCase())
+	);
 
 	const [droppedTemplates, setDroppedTemplates] = useState([]);
-	const dropContainerRef = useRef(null); // Ref for the container
+	const dropContainerRef = useRef(null);
 
 	const handleDrop = (item) => {
-		// Update the dropped templates array
 		setDroppedTemplates((prev) => [
 			...prev,
 			{ id: Date.now(), label: item.label, description: [] },
 		]);
 
-		// Scroll the drop container to the bottom
 		if (dropContainerRef.current) {
 			dropContainerRef.current.scrollTop =
 				dropContainerRef.current.scrollHeight;
@@ -91,12 +97,14 @@ function App() {
 											className="search-input"
 											type="text"
 											placeholder="Search Templates"
+											value={seachItem}
+											onChange={searchTemplate}
 										/>
 										<Search className="search" size={20} />
 									</div>
 								</div>
 								<div className="template-list">
-									{templates.map((temp) => (
+									{filteredTemplates.map((temp) => (
 										<DraggableTemplateItem key={temp.id} item={temp} />
 									))}
 								</div>
@@ -111,6 +119,7 @@ function App() {
 									border: "none",
 									borderRadius: "6px",
 									cursor: "pointer",
+									fontSize: "20px",
 								}}>
 								Edit ✎
 							</button>
@@ -131,7 +140,7 @@ function App() {
 									<Trash />
 								</div>
 							</div>
-							<div className="template-details-body">
+							<div className="template-details-body" ref={dropContainerRef}>
 								<DropZone onDrop={handleDrop}>
 									{[...templateDetails, ...droppedTemplates].map((data) => (
 										<div key={data.id} className="template-detail-item">
