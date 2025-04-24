@@ -1,13 +1,12 @@
 /** @format */
 
 import "./App.css";
-// import "./responsive.css";
 import LeftBar from "./components/Left Bar/leftBar";
 import Header from "./components/Header/header";
 import { Search, Info, Mic, Upload, Trash } from "lucide-react";
 import DraggableTemplateItem from "./components/DraggableItem";
 import DropZone from "./components/DroppingTemplate";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 function App() {
 	const templates = [
@@ -55,29 +54,34 @@ function App() {
 			description: ["Suspected tooth abscess"],
 		},
 	];
+
 	const [seachItem, setsearchItem] = useState("");
+	const [droppedTemplates, setDroppedTemplates] = useState([]);
+	const dropContainerRef = useRef(null);
 
 	const searchTemplate = (e) => {
 		setsearchItem(e.target.value);
 	};
+
 	const filteredTemplates = templates.filter((temp) =>
 		temp.label.toLowerCase().includes(seachItem.toLowerCase())
 	);
-
-	const [droppedTemplates, setDroppedTemplates] = useState([]);
-	const dropContainerRef = useRef(null);
 
 	const handleDrop = (item) => {
 		setDroppedTemplates((prev) => [
 			...prev,
 			{ id: Date.now(), label: item.label, description: [] },
 		]);
-
-		if (dropContainerRef.current) {
-			dropContainerRef.current.scrollTop =
-				dropContainerRef.current.scrollHeight;
-		}
 	};
+
+	useEffect(() => {
+		if (dropContainerRef.current) {
+			dropContainerRef.current.scrollTo({
+				top: dropContainerRef.current.scrollHeight,
+				behavior: "smooth",
+			});
+		}
+	}, [droppedTemplates]);
 
 	return (
 		<div className="app-container">
